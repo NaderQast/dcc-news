@@ -10,16 +10,11 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Edit3, Eye } from "lucide-react";
+import Stats from "../Stats";
+import CurrencyTicker from "../CurrencyTicker";
 
 const Hero = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  const stats = [
-    { label: "الأعضاء المسجلين", value: "64,520", icon: Users },
-    { label: "الأعضاء المجددين", value: "4,525", icon: Users },
-    { label: "الخدمات المقدمة", value: "9,652", icon: Building2 },
-    { label: "شهادات التصدير", value: "9,533", icon: Newspaper },
-  ];
 
   const news = [
     {
@@ -49,6 +44,7 @@ const Hero = () => {
       date: "قبل 4 أيام",
       desc: "الميزان التجاري القوي يبدأ من حماية المنتج المحلي وتوفير بيئة صناعية آمنة.",
       img: "https://news.dcc.sy/storage/news/2026/622808935_1350255237139658_3403123884593075013_n.jpg_1769683430.webp",
+      pinned: true,
     },
   ];
 
@@ -130,28 +126,6 @@ const Hero = () => {
         </div>
       </section>
 
-      {/* --- STATISTICS SECTION --- */}
-      <section className="py-12 bg-white border-b border-slate-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <div
-                key={index}
-                className="text-center p-6 rounded-2xl bg-slate-50 hover:bg-white hover:shadow-xl hover:shadow-slate-100 transition-all border border-slate-100 group"
-              >
-                <div className="inline-flex p-4 rounded-full bg-emerald-50 text-emerald-600 mb-4 group-hover:scale-110 transition-transform">
-                  <stat.icon size={28} />
-                </div>
-                <h3 className="text-3xl font-bold text-primary mb-2">
-                  {stat.value}
-                </h3>
-                <p className="text-slate-600 font-medium">{stat.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* --- LATEST NEWS GRID --- */}
       <section className="py-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -225,6 +199,10 @@ const Hero = () => {
           </div>
         </div>
       </section>
+
+      <Stats />
+
+      <CurrencyTicker />
     </main>
   );
 };

@@ -6,6 +6,8 @@ import {
   FaInstagram,
   FaLinkedinIn,
 } from "react-icons/fa6";
+import { Link } from "react-router-dom";
+import Logo from "../../assets/logo.png";
 const Footer = () => {
   // Get the current year dynamically
   const currentYear = new Date().getFullYear();
@@ -22,12 +24,23 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-12">
         {/* Column 1: Brand & Socials */}
         <div className="space-y-6">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-emerald-900 rounded-lg flex items-center justify-center text-white font-bold text-lg shadow-sm">
-              DCC
+          <Link
+            to="/"
+            className="flex items-center gap-3 hover:opacity-90 transition"
+          >
+            {/* Replaced the div with the actual img tag */}
+            <img
+              src={Logo}
+              alt="Damascus Chamber of Commerce Logo"
+              className="w-14 h-14 object-contain shrink-0"
+            />
+
+            <div className="hidden sm:block text-left space-y-1">
+              <h1 className="text-xl font-bold text-primary tracking-tight leading-tight">
+                غرفة تجارة دمشق
+              </h1>
             </div>
-            <h2 className="text-2xl font-bold text-primary">غرفة تجارة دمشق</h2>
-          </div>
+          </Link>
           <p className="text-slate-500 leading-relaxed text-sm">
             منصة القطاع الخاص وصوته إلى صُناع القرار لبناء اقتصاد سوري تنافسي
             بحوار وتكامل مستمر.

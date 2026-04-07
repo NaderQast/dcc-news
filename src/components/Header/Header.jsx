@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
-
+import Logo from "../../assets/logo.png";
 // Inside your Header component, find the button:
 
 export default function Header() {
@@ -24,23 +24,26 @@ export default function Header() {
             </div>
 
             {/* Logo Group */}
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-emerald-900 rounded-lg flex items-center justify-center font-bold text-xl shadow-lg text-white shrink-0">
-                DCC
-              </div>
+            <Link
+              to="/"
+              className="flex items-center gap-3 hover:opacity-90 transition"
+            >
+              {/* Replaced the div with the actual img tag */}
+              <img
+                src={Logo}
+                alt="Damascus Chamber of Commerce Logo"
+                className="w-14 h-14 object-contain shrink-0"
+              />
+
               <div className="hidden sm:block text-left space-y-1">
                 <h1 className="text-xl font-bold text-primary tracking-tight leading-tight">
                   غرفة تجارة دمشق
                 </h1>
-                <p className="text-[10px] uppercase text-slate-500 font-bold leading-none">
-                  Damascus Chamber of Commerce
-                </p>
               </div>
-            </div>
+            </Link>
           </div>
 
-          {/* 2. CENTER: Navigation Links (Desktop Only) */}
-          <div className="hidden md:flex items-center justify-center space-x-12 ">
+          <div className="hidden md:flex items-center justify-center space-x-12">
             <Link
               to="/"
               className="text-secondary font-bold hover:opacity-80 transition"
@@ -83,7 +86,6 @@ export default function Header() {
           </div>
         </div>
       </div>
-
       {/* MOBILE MENU DROPDOWN */}
       {isOpen && (
         <div className="md:hidden bg-white border-t border-slate-100 animate-in slide-in-from-top duration-300">

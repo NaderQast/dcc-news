@@ -1,1 +1,43 @@
 @import "tailwindcss";
+
+/* Import Modern Arabic Font */
+@import url("https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap");
+
+@theme {
+  /* Define Custom Arabic Font */
+  --font-sans: "Tajawal", ui-sans-serif, system-ui, sans-serif;
+
+  /* Define Brand Colors */
+  --color-primary: #0f172a; /* Professional Dark Slate */
+  --color-secondary: #059669; /* Emerald Green */
+  --color-accent: #38bdf8; /* Light Blue */
+}
+
+/* Base Styles */
+@layer base {
+  html,
+  body {
+    @apply bg-slate-50 text-slate-800;
+    direction: rtl; /* Enforce Right-to-Left */
+  }
+}
+
+@keyframes ticker-loop {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-ticker {
+  display: flex;
+  width: max-content; /* Critical: keeps all items in one long line */
+  animation: ticker-loop 30s linear infinite;
+}
+
+/* Pause on hover for better UX */
+.animate-ticker:hover {
+  animation-play-state: paused;
+}
