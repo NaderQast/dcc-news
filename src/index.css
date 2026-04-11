@@ -22,7 +22,25 @@
   }
 }
 
-@keyframes ticker-loop {
+/* 1. التمرير الأساسي (Currencies) */
+@keyframes ticker-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* التحرك لليسار بمقدار نصف طول المحتوى المكرر */
+    transform: translateX(-50%);
+  }
+}
+
+.animate-ticker {
+  display: flex;
+  width: max-content;
+  animation: ticker-scroll 60s linear infinite;
+}
+
+/* 2. شريط المعادن والكريبتو */
+@keyframes ticker-slide {
   0% {
     transform: translateX(0);
   }
@@ -31,13 +49,32 @@
   }
 }
 
-.animate-ticker {
+.animate-ticker-slide {
   display: flex;
-  width: max-content; /* Critical: keeps all items in one long line */
-  animation: ticker-loop 30s linear infinite;
+  width: max-content;
+  animation: ticker-slide 40s linear infinite;
 }
 
-/* Pause on hover for better UX */
-.animate-ticker:hover {
+/* 3. شريط آخر الأخبار (Breaking News) */
+
+@keyframes scroll-rtl {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-ticker-news {
+  display: flex;
+  width: max-content;
+  animation: scroll-rtl 50s linear infinite;
+}
+
+/* حالة التوقف عند التحويم لجميع العناصر */
+.animate-ticker:hover,
+.animate-ticker-slide:hover,
+.animate-ticker-news:hover {
   animation-play-state: paused;
 }

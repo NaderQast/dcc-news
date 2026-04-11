@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import { Edit3, Eye } from "lucide-react";
 import Stats from "../Stats";
 import CurrencyTicker from "../CurrencyTicker";
+import LatestNewsTicker from "./LatestNewsTicker";
 
 const Hero = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -20,31 +21,30 @@ const Hero = () => {
     {
       title: "غرفة تجارة دمشق تستقبل سفير المملكة الأردنية الهاشمية",
       category: "أبرز الأخبار",
-      date: "تغطية خاصة",
+      date: "11 أبريل 2026",
       desc: "تأكيد على الأخوّة والتكامل الاقتصادي وإطلاق شراكات استراتيجية لدعم الإنتاج والاستثمار.",
       img: "https://news.dcc.sy/storage/news/2026/623286486_1350970467068135_5815223139187687840_n.jpg_1769699593.webp",
     },
     {
       title: "غسان سكر: أعمدة البناء الاقتصادي التشاركية والشفافية",
       category: "اقتصاد",
-      date: "قبل يومين",
+      date: "10 أبريل 2026",
       desc: "الشفافية هي المفتاح الأساسي لتحقيق الكفاءة في أعمدة البناء الاقتصادي السوري الحديث.",
       img: "https://news.dcc.sy/storage/news/2026/622740694_1350213940477121_7236951661472694544_n.jpg_1769683270.webp",
     },
     {
       title: "د. ليلى السمان: اقتصاد سوق تنافسي بحوار وتكامل مستمر",
       category: "حوارات",
-      date: "قبل 3 أيام",
+      date: "09 أبريل 2026",
       desc: "أهمية بناء اقتصاد سوق قادر على المنافسة من خلال التكامل بين القطاعين العام والخاص.",
       img: "https://news.dcc.sy/storage/news/2026/622553156_1350249590473556_7886192123139971328_n.jpg_1769683360.webp",
     },
     {
       title: "منذر البزرة: حماية الصناعة الوطنية أساس الميزان التجاري",
       category: "صناعة",
-      date: "قبل 4 أيام",
+      date: "08 أبريل 2026",
       desc: "الميزان التجاري القوي يبدأ من حماية المنتج المحلي وتوفير بيئة صناعية آمنة.",
       img: "https://news.dcc.sy/storage/news/2026/622808935_1350255237139658_3403123884593075013_n.jpg_1769683430.webp",
-      pinned: true,
     },
   ];
 
@@ -125,7 +125,7 @@ const Hero = () => {
           </div>
         </div>
       </section>
-
+      <LatestNewsTicker news={news} />
       {/* --- LATEST NEWS GRID --- */}
       <section className="py-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

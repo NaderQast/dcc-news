@@ -1,81 +1,42 @@
-import React, { useEffect, useState } from "react";
-import { TrendingUp, TrendingDown, AlertCircle } from "lucide-react";
-
-// REPLACE THIS WITH YOUR KEY FROM EXCHANGERATE-API.COM
-const API_KEY = import.meta.env.VITE_EXCHANGE_RATE_API_KEY;
+import React from "react";
+import DivergenceTicker from "./DivergenceTicker";
 
 const CurrencyTicker = () => {
-  const [rates, setRates] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  const symbols = ["USD", "EUR", "GBP", "TRY", "SAR", "AED", "KWD", "JOD"];
-
-  useEffect(() => {
-    const fetchRates = async () => {
-      try {
-        const response = await fetch(
-          `https://v6.exchangerate-api.com/v6/${API_KEY}/latest/USD`
-        );
-        const data = await response.json();
-
-        if (data.result === "success") {
-          const formatted = symbols.map((s) => ({
-            symbol: s,
-            rate: data.conversion_rates[s].toFixed(2),
-            // Simulated change logic
-            isUp: Math.random() > 0.4,
-            change: (Math.random() * 0.5).toFixed(2),
-          }));
-          setRates(formatted);
-        }
-      } catch (error) {
-        console.error("Ticker Error:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchRates();
-  }, []);
-
-  if (loading || rates.length === 0)
-    return <div className="h-10 bg-slate-900" />;
-
-  // IMPORTANT: Duplicate the array to create the infinite effect
-  const duplicatedRates = [...rates, ...rates];
+  // We define the source URL for the exchangerates.org.uk widget
+  // mc=USD (Base currency)
+  // vcu=008000 (Green for Up)
+  // vcd=FF0000 (Red for Down)
+  const tickerUrl =
+    "//www.exchangerates.org.uk/widget/ER-LRTICKER.php?w=1280&s=2&mc=USD&mbg=FFFFFF&bs=no&bc=FFFFFF&f=verdana&fs=11px&fc=333333&lc=000044&lhc=FE9A00&vc=FE9A00&vcu=008000&vcd=FF0000&";
 
   return (
-    <div className="bg-slate-900 border-b border-white/10 overflow-hidden py-2 relative flex items-center">
-      {/* Label - Absolute so it stays on top while text slides under */}
-      <div className="absolute left-0 top-0 bottom-0 z-10 bg-emerald-600 text-white px-4 flex items-center font-bold text-[10px] shadow-lg">
-        أسعار العملات العالمية
-      </div>
+    <div className="w-full bg-white border-b border-slate-100 overflow-hidden">
+      <div className="max-w-[1440px] mx-auto flex items-center">
+        {/* Optional: Static Label to match your theme */}
+        <div
+          className="hidden md:flex shrink-0 bg-emerald-900 text-white px-4 h-[30px] items-center text-[10px] font-bold z-10 shadow-md
+            border border-slate-200
+        "
+        >
+          أسعار العملات العالمية
+        </div>
 
-      {/* The Animated Container */}
-      <div className="animate-ticker flex items-center">
-        {duplicatedRates.map((item, idx) => (
-          <div
-            key={idx}
-            className="flex items-center gap-4 px-10 border-r border-white/5 whitespace-nowrap"
-          >
-            <span className="text-white font-bold text-xs">{item.symbol}</span>
-            <span className="text-slate-400 font-mono text-xs">
-              {item.rate}
-            </span>
-            <div
-              className={`flex items-center gap-1 text-[10px] font-bold ${
-                item.isUp ? "text-emerald-400" : "text-rose-500"
-              }`}
-            >
-              {item.isUp ? (
-                <TrendingUp size={12} />
-              ) : (
-                <TrendingDown size={12} />
-              )}
-              {item.change}%
-            </div>
-          </div>
-        ))}
+        {/* The iFrame Widget */}
+        <div className="flex-1 h-[30px]">
+          <iframe
+            src={tickerUrl}
+            width="100%"
+            height="30"
+            frameBorder="0"
+            scrolling="no"
+            marginWidth="0"
+            marginHeight="0"
+            title="Live Currency Rates"
+            className="grayscale-[0.2] contrast-[1.1]"
+          ></iframe>
+        </div>
       </div>
+      <DivergenceTicker />
     </div>
   );
 };
