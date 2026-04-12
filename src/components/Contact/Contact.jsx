@@ -94,7 +94,7 @@ const Contact = () => {
               <div className="sm:col-span-2 mt-2">
                 <button
                   type="submit"
-                  className="w-full bg-[#1e61ad] hover:bg-[#154a85] active:scale-[0.98] text-white font-bold text-lg py-4 rounded-full transition-all shadow-lg cursor-pointer"
+                  className="w-full bg-emerald-600 hover:bg-emerald-700 active:scale-[0.98] text-white font-bold text-lg py-4 rounded-full transition-all shadow-lg cursor-pointer"
                 >
                   ارسال
                 </button>

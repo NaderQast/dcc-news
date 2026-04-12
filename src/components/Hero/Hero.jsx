@@ -26,6 +26,13 @@ const Hero = () => {
       img: "https://news.dcc.sy/storage/news/2026/623286486_1350970467068135_5815223139187687840_n.jpg_1769699593.webp",
     },
     {
+      title: " كلمة رئيس غرفة تجارة دمشق",
+      category: "أبرز الأخبار",
+      date: "11 أبريل 2026",
+      desc: "من قلب العاصمة التي صاغت للتاريخ مجده التجاري عبر العصور، ومن بيتها الاقتصادي العريق، غرفة تجارة دمشق",
+      img: "https://news.dcc.sy/storage/news/2025/898989889.jfif_1762854734.webp",
+    },
+    {
       title: "غسان سكر: أعمدة البناء الاقتصادي التشاركية والشفافية",
       category: "اقتصاد",
       date: "10 أبريل 2026",
@@ -146,13 +153,18 @@ const Hero = () => {
               <ChevronLeft size={18} />
             </a>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+          {/* تم التعديل هنا: lg:grid-cols-3 */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {news.map((item, index) => (
               <div
                 key={index}
-                className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-slate-100 group relative cursor-pointer"
+                // تم التعديل هنا: إعطاء العنصر الثاني (index 1) مساحة عمودين
+                className={`bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-slate-100 group relative cursor-pointer flex flex-col ${
+                  index === 1 ? "md:col-span-2 lg:col-span-2" : "col-span-1"
+                }`}
               >
-                {/* 1. ADMIN OVERLAY: Visible only on Hover */}
+                {/* 1. ADMIN OVERLAY */}
                 <div className="absolute inset-0 z-20 bg-primary/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center gap-3">
                   <Link
                     to={`/edit-article/${index}`}
@@ -170,27 +182,37 @@ const Hero = () => {
                 </div>
 
                 {/* 2. IMAGE SECTION */}
-                <div className="h-48 bg-slate-200 overflow-hidden relative">
+                {/* تم التعديل هنا: زيادة ارتفاع الصورة للعنصر العريض ليتناسب مع العرض */}
+                <div
+                  className={`bg-slate-200 overflow-hidden relative ${
+                    index === 1 ? "h-56 md:h-64" : "h-48"
+                  }`}
+                >
                   <img
                     src={item.img}
-                    className="w-full h-full object-contain  group-hover:scale-110 transition-transform duration-700"
+                    // تم التعديل هنا: object-cover ضرورية جداً هنا لكي تملأ الصورة البطاقة العريضة
+                    className="w-full h-full object-center group-hover:scale-110 transition-transform duration-700"
                     alt={item.title}
                   />
-                  {/* Category Badge stays on top of image but behind the hover overlay */}
                   <span className="absolute top-4 right-4 z-10 bg-white/95 backdrop-blur text-primary text-xs font-bold px-3 py-1 rounded-full shadow-sm">
                     {item.category}
                   </span>
                 </div>
 
                 {/* 3. CONTENT SECTION */}
-                <div className="p-6">
+                <div className="p-6 flex flex-col flex-grow">
                   <div className="flex items-center justify-between mb-3">
                     <p className="text-xs text-slate-400 font-medium">
                       {item.date}
                     </p>
                     <div className="w-1.5 h-1.5 rounded-full bg-emerald-500"></div>
                   </div>
-                  <h3 className="font-bold text-md text-primary leading-snug group-hover:text-emerald-600 transition-colors line-clamp-2">
+                  {/* تم التعديل هنا: تكبير خط العنوان للبطاقة العريضة فقط */}
+                  <h3
+                    className={`font-bold text-primary leading-snug group-hover:text-emerald-600 transition-colors line-clamp-2 ${
+                      index === 1 ? "text-lg md:text-xl" : "text-md"
+                    }`}
+                  >
                     {item.title}
                   </h3>
                 </div>
@@ -199,7 +221,6 @@ const Hero = () => {
           </div>
         </div>
       </section>
-
       <Stats />
 
       <CurrencyTicker />
