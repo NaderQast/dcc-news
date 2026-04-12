@@ -191,7 +191,7 @@ const Hero = () => {
                   <img
                     src={item.img}
                     // تم التعديل هنا: object-cover ضرورية جداً هنا لكي تملأ الصورة البطاقة العريضة
-                    className="w-full h-full object-center group-hover:scale-110 transition-transform duration-700"
+                    className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"
                     alt={item.title}
                   />
                   <span className="absolute top-4 right-4 z-10 bg-white/95 backdrop-blur text-primary text-xs font-bold px-3 py-1 rounded-full shadow-sm">
