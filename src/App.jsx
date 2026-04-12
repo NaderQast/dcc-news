@@ -4,6 +4,7 @@ import Hero from "./components/Hero/Hero";
 import Footer from "./components/Footer/Footer";
 import Login from "./pages/Login"; // We will create this next
 import EditArticle from "./pages/EditArticle";
+import Contact from "./components/Contact/Contact";
 export default function App() {
   return (
     <Router>
@@ -20,7 +21,7 @@ export default function App() {
 
           <Route path="/edit-article/:id" element={<EditArticle />} />
         </Routes>
-
+        <Contact />
         <Footer />
       </div>
     </Router>
